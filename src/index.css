@@ -1,69 +1,60 @@
-
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 260 33% 98%;
-    --foreground: 240 10% 3.9%;
+    --background: 222 42% 7%;
+    --foreground: 210 20% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card: 222 32% 11%;
+    --card-foreground: 210 20% 96%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover: 222 36% 9%;
+    --popover-foreground: 210 20% 96%;
 
-    --primary: 260 84.3% 74.5%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 41 94% 72%;
+    --primary-foreground: 222 45% 12%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 216 20% 72%;
+    --secondary-foreground: 210 20% 96%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 222 22% 16%;
+    --muted-foreground: 215 18% 70%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 203 84% 69%;
+    --accent-foreground: 210 20% 96%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 58%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 260 84.3% 74.5%;
+    --border: 220 24% 18%;
+    --input: 220 24% 18%;
+    --ring: 41 94% 72%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 0 0% 95%;
-
-    --card: 24 9.8% 10%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 260 84.3% 74.5%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 260 84.3% 74.5%;
+    --background: 222 42% 7%;
+    --foreground: 210 20% 96%;
+    --card: 222 32% 11%;
+    --card-foreground: 210 20% 96%;
+    --popover: 222 36% 9%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 41 94% 72%;
+    --primary-foreground: 222 45% 12%;
+    --secondary: 216 20% 72%;
+    --secondary-foreground: 210 20% 96%;
+    --muted: 222 22% 16%;
+    --muted-foreground: 215 18% 70%;
+    --accent: 203 84% 69%;
+    --accent-foreground: 210 20% 96%;
+    --destructive: 0 72% 58%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 24% 18%;
+    --input: 220 24% 18%;
+    --ring: 41 94% 72%;
   }
 }
 
@@ -72,48 +63,81 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", "Aptos", "Segoe UI", "Trebuchet MS", system-ui, sans-serif;
+    background-color: #090d14;
+    color: #e8eaf0;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", "Aptos", "Segoe UI", system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  /* Editorial numeric tabular figures for mono stats / numbers */
+  .font-mono,
+  code,
+  kbd,
+  pre {
+    font-feature-settings: "tnum" 1, "zero" 1;
+  }
+
+  ::selection {
+    background: rgba(242, 184, 75, 0.3);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0f18;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #252d38;
+    border-radius: 0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #363f4d;
   }
 }
 
-.tool-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tool-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.textTool-gradient {
-  background: linear-gradient(135deg, #9b87f5 0%, #7E69AB 100%);
-}
-
-.imageTool-gradient {
-  background: linear-gradient(135deg, #8B5CF6 0%, #6E59A5 100%);
-}
-
-.calculatorTool-gradient {
-  background: linear-gradient(135deg, #0EA5E9 0%, #0284c7 100%);
-}
-
-.converterTool-gradient {
-  background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
-}
-
-.binaryTool-gradient {
-  background: linear-gradient(135deg, #1EAEDB 0%, #0891b2 100%);
-}
-
-.websiteTool-gradient {
-  background: linear-gradient(135deg, #D946EF 0%, #c026d3 100%);
-}
-
-.devTool-gradient {
-  background: linear-gradient(135deg, #ea384c 0%, #dc2626 100%);
-}
-
-.miscTool-gradient {
-  background: linear-gradient(135deg, #33C3F0 0%, #0ea5e9 100%);
+@layer utilities {
+  .border-white\/8 {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .border-white\/10 {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .border-white\/15 {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .border-white\/20 {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .border-white\/5 {
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  .divide-white\/8 > * + * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .divide-white\/5 > * + * {
+    border-color: rgba(255, 255, 255, 0.05);
+  }
 }

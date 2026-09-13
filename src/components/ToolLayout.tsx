@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { getToolTheme } from '@/lib/toolThemes';
 
 interface ToolLayoutProps {
   title: string;
@@ -19,22 +20,34 @@ const ToolLayout: React.FC<ToolLayoutProps> = ({
   children,
   instructions
 }) => {
+  const theme = getToolTheme(categoryColor);
+
   return (
     <div className="space-y-6">
-      <div className="space-y-2">
-        <div className={cn(`text-${categoryColor} text-sm font-medium`)}>{category}</div>
-        <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
-        <p className="text-muted-foreground max-w-3xl">{description}</p>
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)] sm:p-8">
+        <div className={cn("absolute inset-0", theme.glowClassName)} />
+        <div className="relative space-y-3">
+          <div
+            className={cn(
+              "inline-flex rounded-full border px-3 py-1 text-sm font-medium uppercase tracking-[0.16em]",
+              theme.badgeClassName
+            )}
+          >
+            {category}
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{title}</h1>
+          <p className="max-w-3xl text-base leading-7 text-slate-300">{description}</p>
+        </div>
       </div>
 
       {instructions && (
-        <div className="bg-muted/50 rounded-lg p-4 border">
-          <h2 className="font-medium mb-2">How to use:</h2>
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+          <h2 className="mb-2 font-medium text-white">How to use</h2>
           {instructions}
         </div>
       )}
 
-      <div className="bg-card rounded-lg border shadow-sm">
+      <div className="rounded-[1.5rem] border border-white/10 bg-card/80 shadow-[0_12px_40px_rgba(0,0,0,0.18)]">
         {children}
       </div>
     </div>

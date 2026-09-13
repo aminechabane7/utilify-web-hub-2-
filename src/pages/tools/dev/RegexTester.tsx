@@ -23,10 +23,6 @@ const RegexTester: React.FC = () => {
   const [useMultiline, setUseMultiline] = useState(false);
   const [useInsensitive, setUseInsensitive] = useState(false);
 
-  useEffect(() => {
-    updateFlags();
-  }, [useGlobal, useMultiline, useInsensitive]);
-
   const updateFlags = () => {
     let newFlags = '';
     if (useGlobal) newFlags += 'g';
@@ -34,6 +30,10 @@ const RegexTester: React.FC = () => {
     if (useInsensitive) newFlags += 'i';
     setFlags(newFlags);
   };
+
+  useEffect(() => {
+    updateFlags();
+  }, [useGlobal, useMultiline, useInsensitive]);
 
   useEffect(() => {
     if (!pattern || !testText) {
@@ -77,7 +77,7 @@ const RegexTester: React.FC = () => {
   const highlightText = () => {
     if (!testText || matches.length === 0) return testText;
 
-    let result = [];
+    const result = [];
     let lastIndex = 0;
 
     matches.forEach((match, i) => {

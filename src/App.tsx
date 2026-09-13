@@ -1,63 +1,83 @@
-
+import { lazy, Suspense, type ComponentType, type LazyExoticComponent, type ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "@/components/Layout";
+import RouteErrorBoundary from "@/components/RouteErrorBoundary";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import Layout from "./components/Layout";
-import WordCounter from "./pages/tools/text/WordCounter";
-import TextCaseConverter from "./pages/tools/text/TextCaseConverter";
-import TextToSlug from "./pages/tools/text/TextToSlug";
-import LoremIpsumGenerator from "./pages/tools/text/LoremIpsumGenerator";
-import RemoveLineBreaks from "./pages/tools/text/RemoveLineBreaks";
-import RandomWordGenerator from "./pages/tools/text/RandomWordGenerator";
-import ImageResizer from "./pages/tools/image/ImageResizer";
-import ImageToBase64 from "./pages/tools/image/ImageToBase64";
-import Base64ToImage from "./pages/tools/image/Base64ToImage";
-import AgeCalculator from "./pages/tools/calculators/AgeCalculator";
-import PercentageCalculator from "./pages/tools/calculators/PercentageCalculator";
-import AverageCalculator from "./pages/tools/calculators/AverageCalculator";
-import ConfidenceIntervalCalculator from "./pages/tools/calculators/ConfidenceIntervalCalculator";
-import MarginCalculator from "./pages/tools/calculators/MarginCalculator";
-import ProbabilityCalculator from "./pages/tools/calculators/ProbabilityCalculator";
-import PaypalFeeCalculator from "./pages/tools/calculators/PaypalFeeCalculator";
-import CpmCalculator from "./pages/tools/calculators/CpmCalculator";
-import LoanCalculator from "./pages/tools/calculators/LoanCalculator";
-import GstCalculator from "./pages/tools/calculators/GstCalculator";
-import DaysCalculator from "./pages/tools/calculators/DaysCalculator";
-import HoursCalculator from "./pages/tools/calculators/HoursCalculator";
-import MonthCalculator from "./pages/tools/calculators/MonthCalculator";
-import StripeFeeCalculator from "./pages/tools/calculators/StripeFeeCalculator";
-import CalorieCalculator from "./pages/tools/calculators/CalorieCalculator";
-import TdeeCalculator from "./pages/tools/calculators/TdeeCalculator";
-import JsonFormatter from "./pages/tools/dev/JsonFormatter";
-import Base64Converter from "./pages/tools/binary/Base64Converter";
-import HexConverter from "./pages/tools/binary/HexConverter";
-import ColorConverter from "./pages/tools/converters/ColorConverter";
-import LengthConverter from "./pages/tools/converters/LengthConverter";
-import UnitConverter from "./pages/tools/converters/UnitConverter";
-import HtmlMinifier from "./pages/tools/website/HtmlMinifier";
-import CssMinifier from "./pages/tools/website/CssMinifier";
-import RegexTester from "./pages/tools/dev/RegexTester";
-import PasswordGenerator from "./pages/tools/misc/PasswordGenerator";
-import UuidGenerator from "./pages/tools/misc/UuidGenerator";
-import AreaConverter from "./pages/tools/converters/AreaConverter";
-import WeightConverter from "./pages/tools/converters/WeightConverter";
-import VolumeConverter from "./pages/tools/converters/VolumeConverter";
-import TemperatureConverter from "./pages/tools/converters/TemperatureConverter";
-import TimeConverter from "./pages/tools/converters/TimeConverter";
-import DigitalConverter from "./pages/tools/converters/DigitalConverter";
-import SpeedConverter from "./pages/tools/converters/SpeedConverter";
-import PressureConverter from "./pages/tools/converters/PressureConverter";
-import PowerConverter from "./pages/tools/converters/PowerConverter";
-import EnergyConverter from "./pages/tools/converters/EnergyConverter";
-import AngleConverter from "./pages/tools/converters/AngleConverter";
-import CurrencyConverter from "./pages/tools/converters/CurrencyConverter";
-import CalculatorsIndex from "./pages/tools/calculators";
+import Index from "@/pages/Index";
+import About from "@/pages/About";
+import NotFound from "@/pages/NotFound";
+import ToolDirectory from "@/pages/tools/index";
+import { toolCategories } from "@/pages/tools";
+import BinaryToolsIndex from "@/pages/tools/binary";
+import CalculatorsIndex from "@/pages/tools/calculators";
+import ConvertersIndex from "@/pages/tools/converters";
+import DeveloperToolsIndex from "@/pages/tools/dev";
+import ImagesIndex from "@/pages/tools/image";
+import TextIndex from "@/pages/tools/text";
+import WebsiteToolsIndex from "@/pages/tools/website";
+import MiscellaneousToolsIndex from "@/pages/tools/misc";
+import Store from "@/pages/Store";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } },
+});
+
+type ToolRoute = { path: string; Component: LazyExoticComponent<ComponentType> };
+type ToolModule = { default: ComponentType };
+
+const toSlug = (value: string) =>
+  value
+    .replace(/\.tsx$/, "")
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .toLowerCase();
+
+const normalizeSegment = (value: string) => value.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+
+// Tool modules are lazy so opening one utility does not download every tool in the directory.
+const toolModules = import.meta.glob<ToolModule>([
+  "./pages/tools/**/*.tsx",
+  "!./pages/tools/**/index.tsx",
+]);
+
+const moduleRoutes = Object.entries(toolModules)
+  .map(([modulePath, loader]) => {
+    const relativePath = modulePath.replace("./pages/tools/", "");
+    const segments = relativePath.split("/");
+    const filename = segments.pop();
+    if (!filename || segments.length === 0) return null;
+
+    return { path: `/tools/${segments.join("/")}/${toSlug(filename)}`, Component: lazy(loader) };
+  })
+  .filter((route): route is ToolRoute => route !== null)
+  .sort((left, right) => left.path.localeCompare(right.path));
+
+const modulePathSet = new Set(moduleRoutes.map(({ path }) => path));
+const moduleLookup = new Map(
+  moduleRoutes.map((route) => {
+    const segments = route.path.split("/").filter(Boolean);
+    return [`${segments.slice(0, -1).join("/")}|${normalizeSegment(segments.at(-1) ?? "")}`, route.Component] as const;
+  }),
+);
+
+const legacyRoutes = Array.from(new Set(toolCategories.flatMap((category) => category.tools.map((tool) => tool.path))))
+  .sort()
+  .flatMap((path) => {
+    if (modulePathSet.has(path)) return [];
+    const segments = path.split("/").filter(Boolean);
+    if (segments.length < 3 || segments[0] !== "tools") return [];
+    const lookupKey = `${segments.slice(0, -1).join("/")}|${normalizeSegment(segments.at(-1) ?? "")}`;
+    const Component = moduleLookup.get(lookupKey);
+    return Component ? [{ path, Component }] : [];
+  });
+
+const toolRoutes = [...moduleRoutes, ...legacyRoutes];
+const LoadingRoute = () => <div className="py-16 text-center text-sm text-muted-foreground">Loading tool…</div>;
+const withLayout = (content: ReactNode) => <Layout>{content}</Layout>;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -65,76 +85,26 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout><Index /></Layout>} />
-          
-          {/* Text Tools */}
-          <Route path="/tools/text/word-counter" element={<Layout><WordCounter /></Layout>} />
-          <Route path="/tools/text/text-case-converter" element={<Layout><TextCaseConverter /></Layout>} />
-          <Route path="/tools/text/text-to-slug" element={<Layout><TextToSlug /></Layout>} />
-          <Route path="/tools/text/lorem-ipsum-generator" element={<Layout><LoremIpsumGenerator /></Layout>} />
-          <Route path="/tools/text/remove-line-breaks" element={<Layout><RemoveLineBreaks /></Layout>} />
-          <Route path="/tools/text/random-word-generator" element={<Layout><RandomWordGenerator /></Layout>} />
-          
-          {/* Image Tools */}
-          <Route path="/tools/image/image-resizer" element={<Layout><ImageResizer /></Layout>} />
-          <Route path="/tools/image/image-to-base64" element={<Layout><ImageToBase64 /></Layout>} />
-          <Route path="/tools/image/base64-to-image" element={<Layout><Base64ToImage /></Layout>} />
-          
-          {/* Calculator Tools */}
-          <Route path="/tools/calculators" element={<Layout><CalculatorsIndex /></Layout>} />
-          <Route path="/tools/calculators/age-calculator" element={<Layout><AgeCalculator /></Layout>} />
-          <Route path="/tools/calculators/percentage-calculator" element={<Layout><PercentageCalculator /></Layout>} />
-          <Route path="/tools/calculators/average-calculator" element={<Layout><AverageCalculator /></Layout>} />
-          <Route path="/tools/calculators/confidence-interval-calculator" element={<Layout><ConfidenceIntervalCalculator /></Layout>} />
-          <Route path="/tools/calculators/margin-calculator" element={<Layout><MarginCalculator /></Layout>} />
-          <Route path="/tools/calculators/probability-calculator" element={<Layout><ProbabilityCalculator /></Layout>} />
-          <Route path="/tools/calculators/paypal-fee-calculator" element={<Layout><PaypalFeeCalculator /></Layout>} />
-          <Route path="/tools/calculators/cpm-calculator" element={<Layout><CpmCalculator /></Layout>} />
-          <Route path="/tools/calculators/loan-calculator" element={<Layout><LoanCalculator /></Layout>} />
-          <Route path="/tools/calculators/gst-calculator" element={<Layout><GstCalculator /></Layout>} />
-          <Route path="/tools/calculators/days-calculator" element={<Layout><DaysCalculator /></Layout>} />
-          <Route path="/tools/calculators/hours-calculator" element={<Layout><HoursCalculator /></Layout>} />
-          <Route path="/tools/calculators/month-calculator" element={<Layout><MonthCalculator /></Layout>} />
-          <Route path="/tools/calculators/stripe-fee-calculator" element={<Layout><StripeFeeCalculator /></Layout>} />
-          <Route path="/tools/calculators/calorie-calculator" element={<Layout><CalorieCalculator /></Layout>} />
-          <Route path="/tools/calculators/tdee-calculator" element={<Layout><TdeeCalculator /></Layout>} />
-          
-          {/* Converter Tools */}
-          <Route path="/tools/converters/unit-converter" element={<Layout><UnitConverter /></Layout>} />
-          <Route path="/tools/converters/color-converter" element={<Layout><ColorConverter /></Layout>} />
-          <Route path="/tools/converters/length-converter" element={<Layout><LengthConverter /></Layout>} />
-          <Route path="/tools/converters/area-converter" element={<Layout><AreaConverter /></Layout>} />
-          <Route path="/tools/converters/weight-converter" element={<Layout><WeightConverter /></Layout>} />
-          <Route path="/tools/converters/volume-converter" element={<Layout><VolumeConverter /></Layout>} />
-          <Route path="/tools/converters/temperature-converter" element={<Layout><TemperatureConverter /></Layout>} />
-          <Route path="/tools/converters/time-converter" element={<Layout><TimeConverter /></Layout>} />
-          <Route path="/tools/converters/digital-converter" element={<Layout><DigitalConverter /></Layout>} />
-          <Route path="/tools/converters/speed-converter" element={<Layout><SpeedConverter /></Layout>} />
-          <Route path="/tools/converters/pressure-converter" element={<Layout><PressureConverter /></Layout>} />
-          <Route path="/tools/converters/power-converter" element={<Layout><PowerConverter /></Layout>} />
-          <Route path="/tools/converters/energy-converter" element={<Layout><EnergyConverter /></Layout>} />
-          <Route path="/tools/converters/angle-converter" element={<Layout><AngleConverter /></Layout>} />
-          <Route path="/tools/converters/currency-converter" element={<Layout><CurrencyConverter /></Layout>} />
-          
-          {/* Binary Tools */}
-          <Route path="/tools/binary/base64-converter" element={<Layout><Base64Converter /></Layout>} />
-          <Route path="/tools/binary/hex-converter" element={<Layout><HexConverter /></Layout>} />
-          
-          {/* Website Tools */}
-          <Route path="/tools/website/html-minifier" element={<Layout><HtmlMinifier /></Layout>} />
-          <Route path="/tools/website/css-minifier" element={<Layout><CssMinifier /></Layout>} />
-          
-          {/* Dev Tools */}
-          <Route path="/tools/dev/json-formatter" element={<Layout><JsonFormatter /></Layout>} />
-          <Route path="/tools/dev/regex-tester" element={<Layout><RegexTester /></Layout>} />
-          
-          {/* Misc Tools */}
-          <Route path="/tools/misc/password-generator" element={<Layout><PasswordGenerator /></Layout>} />
-          <Route path="/tools/misc/uuid-generator" element={<Layout><UuidGenerator /></Layout>} />
-          
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <RouteErrorBoundary>
+          <Routes>
+            <Route path="/" element={withLayout(<Index />)} />
+            <Route path="/about" element={withLayout(<About />)} />
+            <Route path="/store" element={withLayout(<Store />)} />
+            <Route path="/tools" element={withLayout(<ToolDirectory />)} />
+            <Route path="/tools/binary" element={withLayout(<BinaryToolsIndex />)} />
+            <Route path="/tools/calculators" element={withLayout(<CalculatorsIndex />)} />
+            <Route path="/tools/converters" element={withLayout(<ConvertersIndex />)} />
+            <Route path="/tools/dev" element={withLayout(<DeveloperToolsIndex />)} />
+            <Route path="/tools/image" element={withLayout(<ImagesIndex />)} />
+            <Route path="/tools/text" element={withLayout(<TextIndex />)} />
+            <Route path="/tools/website" element={withLayout(<WebsiteToolsIndex />)} />
+            <Route path="/tools/misc" element={withLayout(<MiscellaneousToolsIndex />)} />
+            {toolRoutes.map(({ path, Component }) => (
+              <Route key={path} path={path} element={withLayout(<Suspense fallback={<LoadingRoute />}><Component /></Suspense>)} />
+            ))}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </RouteErrorBoundary>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

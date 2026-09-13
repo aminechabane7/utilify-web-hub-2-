@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import ToolLayout from '@/components/ToolLayout';
 import { Textarea } from '@/components/ui/textarea';
@@ -19,13 +18,29 @@ const RemoveLineBreaks: React.FC = () => {
     if (!text) return;
 
     if (mode === 'remove') {
-      const processed = text.replace(/[\r\n]+/g, separator);
-      setResult(processed);
+      // Replace all line breaks with separator, collapse multiple separators, trim
+      let processed = text.replace(/[\r\n]+/g, separator);
+      if (separator) {
+        // Collapse multiple separators into one
+        const sepRegex = new RegExp(`[${separator.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}]{2,}`, 'g');
+        processed = processed.replace(sepRegex, separator);
+      }
+      const trimmedProcessed = processed.trim();
+      setResult(trimmedProcessed);
     } else {
-      // Add line breaks after each sentence
+      // Add line breaks after sentence-ending punctuation, but avoid common abbreviations and decimals
       const processed = text
-        .replace(/([.!?])\s+/g, '$1\n')
-        .replace(/\n+/g, '\n'); // Remove multiple consecutive line breaks
+        // Avoid breaking after e.g., i.e., etc., Mr., Mrs., Dr., numbers like 3.14
+        .replace(/([a-zA-Z0-9][.!?])(\s+)(?=[A-Z])/g, (match, p1, p2) => {
+          // Don't break after common abbreviations
+          if (/\b(?:e\.g|i\.e|etc|Mr|Mrs|Dr)\.$/i.test(match)) return match;
+          // Don't break after numbers (e.g., 3.14)
+          if (/\d\.\d$/.test(p1)) return match;
+          return p1 + '\n';
+        })
+        // Remove multiple consecutive line breaks
+        .replace(/\n{2,}/g, '\n')
+        .trim();
       setResult(processed);
     }
   };

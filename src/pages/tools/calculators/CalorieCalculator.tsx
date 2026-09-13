@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import ToolLayout from '@/components/ToolLayout';
 import { Input } from "@/components/ui/input";
@@ -54,6 +53,23 @@ const CalorieCalculator: React.FC = () => {
       rateOfChange: 0.5,
     }
   });
+
+  // Use useMemo for watchedFields to avoid changing dependency on every render
+  const watchedFields = React.useMemo(
+    () => [
+      form.watch("activityLevel"),
+      form.watch("goal"),
+      form.watch("rateOfChange"),
+      form.watch("age"),
+      form.watch("gender"),
+      form.watch("height"),
+      form.watch("weight"),
+    ],
+    [
+      // Only depend on the form object itself to avoid infinite re-renders
+      form
+    ]
+  );
 
   const calculateCalories = (data: CalorieCalculatorFormValues) => {
     const { age, gender, height, weight, activityLevel, goal, rateOfChange } = data;

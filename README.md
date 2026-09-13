@@ -1,4 +1,15 @@
-# Welcome to your Lovable project
+# Utilify Web Hub
+
+Run the app with Yarn:
+
+```bash
+yarn install
+yarn dev
+```
+
+The public store is available at `/store`. Copy `.env.example` to `.env` to configure your environment. Restart the Vite server after changing `.env`.
+
+Product buttons use the sample mail links in `src/lib/content.ts`. Replace those URLs with your payment provider checkout links when ready.# Welcome to your Lovable project
 
 ## Project info
 

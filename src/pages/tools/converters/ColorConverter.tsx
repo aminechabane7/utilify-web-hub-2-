@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ToolLayout from '@/components/ToolLayout';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -33,13 +33,15 @@ const ColorConverter: React.FC = () => {
     const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
     if (!match) return 'hsl(0, 0%, 0%)';
 
-    let r = parseInt(match[1]) / 255;
-    let g = parseInt(match[2]) / 255;
-    let b = parseInt(match[3]) / 255;
+    const r = parseInt(match[1]) / 255;
+    const g = parseInt(match[2]) / 255;
+    const b = parseInt(match[3]) / 255;
 
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
-    let h = 0, s, l = (max + min) / 2;
+    let h = 0;
+    let s = 0;
+    const l = (max + min) / 2;
 
     if (max === min) {
       h = s = 0;

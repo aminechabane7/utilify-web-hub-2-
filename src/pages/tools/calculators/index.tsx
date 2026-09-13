@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { 
   Percent, 
   Calculator, 
@@ -13,7 +12,7 @@ import {
   Calendar,
   Utensils
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import CategoryShowcase from '@/components/CategoryShowcase';
 
 interface CalculatorTool {
   id: string;
@@ -139,35 +138,7 @@ const calculatorTools: CalculatorTool[] = [
 ];
 
 const CalculatorsIndex: React.FC = () => {
-  return (
-    <div className="space-y-6">
-      <div className="space-y-2">
-        <div className="text-calculatorTool text-sm font-medium">Calculator Tools</div>
-        <h1 className="text-3xl font-bold tracking-tight">Calculator Tools</h1>
-        <p className="text-muted-foreground max-w-3xl">
-          A collection of useful calculator tools to help with various tasks.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {calculatorTools.map((tool) => (
-          <Link key={tool.id} to={tool.path}>
-            <Card className="h-full transition-all hover:shadow-md">
-              <CardContent className="p-4 h-full flex flex-col">
-                <div className="flex items-start mb-2 pt-4">
-                  <div className="p-2 rounded-md bg-calculatorTool/10 text-calculatorTool mr-3">
-                    <tool.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-medium">{tool.title}</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">{tool.description}</p>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
+  return <CategoryShowcase categoryKey="calculators" tools={calculatorTools} />;
 };
 
 export default CalculatorsIndex;

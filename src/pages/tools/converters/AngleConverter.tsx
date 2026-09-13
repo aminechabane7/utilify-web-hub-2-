@@ -47,7 +47,7 @@ const units: Unit[] = [
   },
   { 
     id: 'second', 
-    name: 'Seconds of arc (\")', 
+    name: 'Seconds of arc (")', 
     toBase: (value) => value / 3600, 
     fromBase: (value) => value * 3600 
   }
