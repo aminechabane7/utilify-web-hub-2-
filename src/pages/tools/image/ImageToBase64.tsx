@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import ToolLayout from '@/components/ToolLayout';
 import { Button } from '@/components/ui/button';
