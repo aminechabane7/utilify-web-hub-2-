@@ -19,9 +19,9 @@ Product buttons use the sample mail links in `src/lib/content.ts`. Replace those
 
 There are several ways of editing your application.
 
-**Use Lovable**
+**TO GET LINK DIRECT :**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dfc2fead-650a-4a11-bfbe-fc1a3fbf2dc3) and start prompting.
+Simply visit the [Project](https://utilify-web-hub-2.vercel.app/) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -71,15 +71,4 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/dfc2fead-650a-4a11-bfbe-fc1a3fbf2dc3) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
 "# utilify-web-hub-2-" 
