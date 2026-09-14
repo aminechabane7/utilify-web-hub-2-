@@ -19,7 +19,7 @@ import ImagesIndex from "@/pages/tools/image";
 import TextIndex from "@/pages/tools/text";
 import WebsiteToolsIndex from "@/pages/tools/website";
 import MiscellaneousToolsIndex from "@/pages/tools/misc";
-import Store from "@/pages/Store";
+//import Store from "@/pages/Store";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } },
@@ -89,7 +89,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={withLayout(<Index />)} />
             <Route path="/about" element={withLayout(<About />)} />
-            <Route path="/store" element={withLayout(<Store />)} />
             <Route path="/tools" element={withLayout(<ToolDirectory />)} />
             <Route path="/tools/binary" element={withLayout(<BinaryToolsIndex />)} />
             <Route path="/tools/calculators" element={withLayout(<CalculatorsIndex />)} />

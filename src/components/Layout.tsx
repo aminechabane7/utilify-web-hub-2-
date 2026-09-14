@@ -13,7 +13,6 @@ const NAV_LINKS = [
   { label: "Home", to: "/" },
   { label: "Tools", to: "/tools" },
   { label: "About", to: "/about" },
-  { label: "Store", to: "/store" },
 ] as const;
 
 const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
@@ -132,7 +131,6 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
                 {[
                   { label: "All tools", to: "/tools" },
                   { label: "About", to: "/about" },
-                  { label: "Store", to: "/store" },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link
