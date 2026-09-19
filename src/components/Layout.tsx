@@ -4,6 +4,7 @@ import { ArrowUpRight, Sun, Moon, Laptop } from "lucide-react";
 import { useTheme } from "next-themes";
 import Seo from "@/components/Seo";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -111,6 +112,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
       <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-24 pt-8 sm:px-6 lg:px-8">
         {children}
         <Analytics />
+        <SpeedInsights />
       </main>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
