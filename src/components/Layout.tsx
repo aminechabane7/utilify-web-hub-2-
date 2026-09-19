@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import Seo from "@/components/Seo";
+import { Analytics } from '@vercel/analytics/next';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -78,6 +79,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
       {/* ── Main content ─────────────────────────────────────────────────── */}
       <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-24 pt-8 sm:px-6 lg:px-8">
         {children}
+        <Analytics />
       </main>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
