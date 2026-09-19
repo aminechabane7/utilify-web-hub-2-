@@ -20,6 +20,7 @@ import TextIndex from "@/pages/tools/text";
 import WebsiteToolsIndex from "@/pages/tools/website";
 import MiscellaneousToolsIndex from "@/pages/tools/misc";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 //import Store from "@/pages/Store";
 
 const queryClient = new QueryClient({
@@ -84,6 +85,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Analytics />
+      <SpeedInsights />
       <Toaster />
       <Sonner />
       <BrowserRouter>
