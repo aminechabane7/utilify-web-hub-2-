@@ -19,6 +19,7 @@ import ImagesIndex from "@/pages/tools/image";
 import TextIndex from "@/pages/tools/text";
 import WebsiteToolsIndex from "@/pages/tools/website";
 import MiscellaneousToolsIndex from "@/pages/tools/misc";
+import { Analytics } from '@vercel/analytics/next';
 //import Store from "@/pages/Store";
 
 const queryClient = new QueryClient({
@@ -82,6 +83,7 @@ const withLayout = (content: ReactNode) => <Layout>{content}</Layout>;
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <Analytics />
       <Toaster />
       <Sonner />
       <BrowserRouter>
