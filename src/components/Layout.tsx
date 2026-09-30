@@ -58,12 +58,12 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
             className="group flex items-center gap-2.5 text-sm font-semibold tracking-tight text-foreground"
             aria-label="Utilify Web Hub — home"
           >
-            <span
-              className="flex h-7 w-7 items-center justify-center border border-border bg-primary text-[11px] font-bold leading-none text-primary-foreground transition-colors duration-150 group-hover:bg-[#F2B84B]"
-              aria-hidden
-            >
-              U
-            </span>
+            <img
+              src="/utilify-logo.png"
+              alt=""
+              aria-hidden="true"
+              className="h-8 w-7 object-contain transition-transform duration-150 group-hover:scale-105"
+            />
             <span className="hidden sm:inline">Utilify</span>
             <span className="hidden text-xs font-normal text-muted-foreground sm:inline">/ Web Hub</span>
           </Link>
@@ -121,12 +121,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
           {/* Brand column */}
           <div className="max-w-xs">
             <div className="flex items-center gap-2.5">
-              <span
-                className="flex h-7 w-7 items-center justify-center border border-border bg-primary text-[11px] font-bold leading-none text-primary-foreground"
-                aria-hidden
-              >
-                U
-              </span>
+              <img src="/utilify-logo.png" alt="" aria-hidden="true" className="h-7 w-6 object-contain" />
               <span className="text-sm font-semibold text-foreground">Utilify Web Hub</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
