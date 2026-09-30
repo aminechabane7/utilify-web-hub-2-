@@ -103,7 +103,7 @@ const Index: React.FC = () => {
                 </span>
                 <Link
                   to={`/tools/${category.id}`}
-                  className="transition-colors duration-150 hover:text-white"
+                  className="transition-colors duration-150 hover:text-red-500"
                 >
                   {category.title}
                 </Link>
@@ -154,7 +154,7 @@ const Index: React.FC = () => {
                       inputRef.current?.focus();
                     }}
                     aria-label="Clear search"
-                    className="text-foreground transition-colors hover:text-white"
+                    className="text-foreground transition-colors hover:text-foreground"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -168,12 +168,12 @@ const Index: React.FC = () => {
               {visibleTools ? (
                 <div className="mt-2">
                   {visibleTools.length > 0 ? (
-                    <ul className="divide-y divide-foreground border-t border-white/5">
+                    <ul className="divide-y divide-foreground border-t border-foreground">
                       {visibleTools.slice(0, 10).map((tool) => (
                         <li key={tool.path}>
                           <Link
                             to={tool.path}
-                            className="group flex items-baseline gap-4 py-3 transition-colors duration-150 hover:bg-white/[0.02]"
+                            className="group flex items-baseline gap-4 py-3 transition-colors duration-150 hover:bg-foreground"
                           >
                             <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-foreground">
                               {tool.category.title.replace(/ Tools$/, "")}
@@ -188,7 +188,7 @@ const Index: React.FC = () => {
                       ))}
                     </ul>
                   ) : (
-                    <p className="mt-4 text-sm text-white/45">
+                    <p className="mt-4 text-sm text-foreground">
                       No tools match “{query}”. Try a different word.
                     </p>
                   )}
@@ -222,7 +222,7 @@ const Index: React.FC = () => {
       </section>
 
       {/* Stats */}
-      <section className="grid grid-cols-2 gap-x-6 gap-y-6 border-b border-white/8 py-12 md:grid-cols-4 md:gap-x-8">
+      <section className="grid grid-cols-2 gap-x-6 gap-y-6 border-b border-foreground py-12 md:grid-cols-4 md:gap-x-8">
         <Stat label="Categories" value={toolCategories.length} />
         <Stat label="Total tools" value={totalTools} />
         <Stat label="Live in browser" value={implementedTools} />
@@ -278,7 +278,7 @@ const FilterChip: React.FC<{
       "inline-flex items-center gap-2 border px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors duration-150",
       active
         ? "border-[#F2B84B] bg-[#F2B84B]/10 text-[#F2B84B]"
-        : "border-white/10 text-foreground hover:border-white/30 hover:text-white",
+        : "border-foreground text-foreground hover:border-foreground hover:text-blue-500",
     ].join(" ")}
   >
     <span>{label}</span>
@@ -339,11 +339,11 @@ const CategoryBlock: React.FC<{ category: ToolCategoryGroup; hasIndex: boolean }
       </div>
 
       {/* Right list — editorial two-column */}
-      <ul className="col-span-12 grid grid-cols-1 divide-y divide-white/8 border-t border-white/8 md:col-span-8 md:grid-cols-2 md:divide-y-0 md:border-l md:border-t-0 md:pl-8">
+      <ul className="col-span-12 grid grid-cols-1 divide-y divide-foreground border-t border-foreground md:col-span-8 md:grid-cols-2 md:divide-y-0 md:border-l md:border-t-0 md:pl-8">
         {implemented.map((tool, idx) => (
           <li
             key={tool.id}
-            className="border-b border-white/8 last:border-b-0 md:border-b md:odd:border-r md:odd:pr-6 md:even:pl-6"
+            className="border-b border-foreground last:border-b-0 md:border-b md:odd:border-r md:odd:pr-6 md:even:pl-6"
           >
             <Link
               to={tool.path}

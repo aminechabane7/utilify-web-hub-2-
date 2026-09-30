@@ -308,7 +308,7 @@ const SectionHeader: React.FC<{
   href?: string;
   categoryId?: string;
 }> = ({ index, title, description, count, href, categoryId }) => (
-  <header className="grid grid-cols-12 gap-x-6 gap-y-3 border-b border-white/10 pb-6 md:gap-x-8">
+  <header className="grid grid-cols-12 gap-x-6 gap-y-3 border-b border-foreground pb-6 md:gap-x-8">
     <div className="col-span-12 flex items-baseline gap-3 md:col-span-2">
       <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#F2B84B]">§ {index}</span>
       <span className="font-mono text-[11px] tabular-nums text-foreground">{String(count).padStart(2, '0')}</span>
@@ -352,7 +352,7 @@ const TextSection: React.FC<{ category: ToolCategoryGroup }> = ({ category }) =>
         {hero && (
           <Link
             to={hero.path}
-            className="group col-span-12 flex flex-col border border-white/10 p-6 transition-colors duration-150 hover:border-white/30 md:col-span-5 md:p-8"
+            className="group col-span-12 flex flex-col p-6 transition-colors duration-150  md:col-span-5 md:p-8"
           >
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">Featured</p>
             <h4 className="mt-6 text-2xl font-semibold tracking-[-0.02em] text-foreground md:text-[28px]">
@@ -366,16 +366,16 @@ const TextSection: React.FC<{ category: ToolCategoryGroup }> = ({ category }) =>
           </Link>
         )}
 
-        <ul className="col-span-12 grid grid-cols-1 divide-y divide-white/8 border-t border-white/8 md:col-span-7 md:grid-cols-2 md:divide-y-0">
+        <ul className="col-span-12 grid grid-cols-1 divide-y divide-foreground border-t border-foreground md:col-span-7 md:grid-cols-2 md:divide-y-0">
           {rest.map((tool) => (
-            <li key={tool.id} className="border-b border-white/8 last:border-b-0 md:border-b md:odd:border-r md:odd:pr-6 md:even:pl-6">
+            <li key={tool.id} className="border-b border-foreground last:border-b-0 md:border-b md:odd:border-r md:odd:pr-6 md:even:pl-6">
               <Link
                 to={tool.path}
-                className="group flex items-baseline gap-3 py-3 text-sm text-foreground/70 transition-colors duration-150 hover:text-foreground"
+                className="group flex items-baseline gap-3 py-3 text-sm text-foreground transition-colors duration-150 hover:text-foreground"
               >
                 <span className="font-mono text-[11px] text-foreground/30 group-hover:text-[#F2B84B]">→</span>
                 <span className="flex-1 truncate">{tool.title}</span>
-                <ArrowUpRight className="h-3.5 w-3.5 -translate-y-0.5 translate-x-0.5 text-foreground/0 transition-all duration-150 group-hover:text-[#F2B84B]" />
+                <ArrowUpRight className="h-3.5 w-3.5 -translate-y-0.5 translate-x-0.5 text-foreground transition-all duration-150 group-hover:text-[#F2B84B]" />
               </Link>
             </li>
           ))}
@@ -407,7 +407,7 @@ const CalculatorSection: React.FC<{ category: ToolCategoryGroup }> = ({ category
         {first && (
           <Link
             to={first.path}
-            className="group col-span-12 flex flex-col gap-4 bg-white/[0.02] p-6 transition-colors duration-150 hover:bg-white/[0.04] md:col-span-7 md:p-8"
+            className="group col-span-12 flex flex-col gap-4 p-6 transition-colors duration-150  md:col-span-7 md:p-8"
           >
             <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">
               <CalculatorGlyph />
@@ -424,7 +424,7 @@ const CalculatorSection: React.FC<{ category: ToolCategoryGroup }> = ({ category
         {second && (
           <Link
             to={second.path}
-            className="group col-span-12 flex flex-col gap-3 border border-white/10 p-6 transition-colors duration-150 hover:border-white/30 md:col-span-5 md:p-8"
+            className="group col-span-12 flex flex-col gap-3 p-8 transition-colors duration-150 md:col-span-5 md:p-8"
           >
             <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">
               <Hash className="h-3.5 w-3.5" />
@@ -432,7 +432,7 @@ const CalculatorSection: React.FC<{ category: ToolCategoryGroup }> = ({ category
             </div>
             <h4 className="text-xl font-semibold tracking-[-0.02em] text-foreground md:text-2xl">{second.title}</h4>
             <p className="text-sm leading-6 text-foreground">{second.description}</p>
-            <span className="mt-auto inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors group-hover:text-[#F2B84B]">
+            <span className="mt-auto inline-flex items-center gap-1.5 text-sm text-foreground transition-colors group-hover:text-[#F2B84B]">
               Open <ArrowUpRight className="h-3.5 w-3.5" />
             </span>
           </Link>
@@ -442,7 +442,7 @@ const CalculatorSection: React.FC<{ category: ToolCategoryGroup }> = ({ category
           <Link
             key={tool.id}
             to={tool.path}
-            className="group col-span-6 flex items-baseline justify-between gap-3 border-t border-white/8 py-4 text-sm text-text-sm font-medium text-foreground transition-colors duration-150 hover:text-foreground md:col-span-3"
+            className="group col-span-6 flex items-baseline justify-between gap-3 border-t border-foreground py-4 text-sm text-text-sm font-medium text-foreground transition-colors duration-150 hover:text-foreground md:col-span-3"
           >
             <span className="truncate">{tool.title}</span>
             <ArrowUpRight className="h-3.5 w-3.5 -translate-y-0.5 translate-x-0.5 text-foreground transition-all duration-150 group-hover:text-[#F2B84B]" />
@@ -496,18 +496,18 @@ const ConverterSection: React.FC<{ category: ToolCategoryGroup }> = ({ category 
         href={`/tools/${category.id}`}
         categoryId={category.id}
       />
-      <div className="mt-6 grid grid-cols-1 gap-px bg-white/8">
+      <div className="mt-6 grid grid-cols-1 gap-px ">
         {implemented.map((tool) => (
           <Link
             key={tool.id}
             to={tool.path}
-            className="group flex items-center justify-between gap-4 bg-[#0b0d12] px-4 py-4 transition-colors duration-150 hover:bg-[#10131a]"
+            className="group flex items-center justify-between gap-4 px-4 py-4 transition-colors duration-150"
           >
             <div>
-              <p className="text-sm font-medium text-white">{tool.title}</p>
-              <p className="mt-0.5 text-xs text-white/50">{tool.description}</p>
+              <p className="text-sm font-medium text-foreground">{tool.title}</p>
+              <p className="mt-0.5 text-xs text-foreground">{tool.description}</p>
             </div>
-            <ArrowUpRight className="h-4 w-4 text-white/35 transition-all duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#F2B84B]" />
+            <ArrowUpRight className="h-4 w-4 text-foreground transition-all duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#F2B84B]" />
           </Link>
         ))}
       </div>
@@ -526,24 +526,24 @@ const RemainingSection: React.FC<{ categories: ToolCategoryGroup[] }> = ({ categ
         description="More categories, all powered by the same data underneath the home page."
         count={categories.reduce((s, c) => s + c.tools.length, 0)}
       />
-      <ul className="mt-6 divide-y divide-white/8 border-y border-white/8">
+      <ul className="mt-6 divide-y divide-foreground border-y border-foreground">
         {categories.map((category) => {
           const hasIndex = categoryIndexPages.has(category.id);
           return (
             <li key={category.id}>
-              <div className="grid grid-cols-12 items-baseline gap-x-4 gap-y-1 py-5 transition-colors duration-150 hover:bg-white/[0.015]">
+              <div className="grid grid-cols-12 items-baseline gap-x-4 gap-y-1 py-5 transition-colors duration-150">
                 <span className="col-span-2 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/35">
                   {category.title.replace(/ Tools$/, '')}
                 </span>
-                <p className="col-span-12 text-sm text-foreground/65 md:col-span-6">{category.description}</p>
-                <span className="col-span-6 font-mono text-[11px] tabular-nums text-foreground/40 md:col-span-2 md:text-right">
+                <p className="col-span-12 text-sm text-foreground md:col-span-6">{category.description}</p>
+                <span className="col-span-6 font-mono text-[11px] tabular-nums text-foreground md:col-span-2 md:text-right">
                   {category.tools.length} tools
                 </span>
                 <div className="col-span-6 flex items-center justify-end gap-4 text-sm md:col-span-2">
                   {hasIndex && (
                     <Link
                       to={`/tools/${category.id}`}
-                      className="text-foreground/55 transition-colors duration-150 hover:text-foreground"
+                      className="text-foreground transition-colors duration-150 hover:text-foreground"
                     >
                       Open
                     </Link>
@@ -573,7 +573,7 @@ const CalculatorGlyph: React.FC = () => (
     viewBox="0 0 14 14"
     fill="none"
     aria-hidden
-    className="text-foreground/45"
+    className="text-foreground"
   >
     <rect x="2" y="1.5" width="10" height="11" stroke="currentColor" strokeWidth="1" />
     <rect x="3.5" y="3" width="7" height="2" fill="currentColor" />

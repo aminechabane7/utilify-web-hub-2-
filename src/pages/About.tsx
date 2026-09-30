@@ -34,7 +34,7 @@ const About: React.FC = () => {
   return (
     <div className="font-sans">
       {/* Hero */}
-      <section className="grid grid-cols-12 gap-x-6 gap-y-8 border-b border-white/8 pb-14 md:gap-x-8 md:pb-20">
+      <section className="grid grid-cols-12 gap-x-6 gap-y-8 border-b border-foreground pb-14 md:gap-x-8 md:pb-20">
         <div className="col-span-12 lg:col-span-8">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#F2B84B]">
             <span className="mr-2 inline-block h-px w-6 translate-y-[-3px] bg-[#F2B84B]/60 align-middle" />
@@ -61,7 +61,7 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        <aside className="col-span-12 hidden border-l border-white/8 pl-8 pt-2 lg:col-span-4 lg:block">
+        <aside className="col-span-12 hidden border-l border-foreground pl-8 pt-2 lg:col-span-4 lg:block">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">Colophon</p>
           <dl className="mt-5 space-y-4 text-sm">
             <div>
@@ -81,8 +81,8 @@ const About: React.FC = () => {
       </section>
 
       {/* Principles */}
-      <section className="border-b border-white/8 py-14 md:py-20">
-        <div className="grid grid-cols-12 gap-x-6 gap-y-6 border-b border-white/10 pb-6 md:gap-x-8">
+      <section className="border-b border-foreground py-14 md:py-20">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-6 border-b border-foreground pb-6 md:gap-x-8">
           <div className="col-span-12 flex items-baseline gap-3 md:col-span-2">
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#F2B84B]">
               § 01
@@ -168,7 +168,7 @@ const About: React.FC = () => {
         <div className="flex flex-wrap items-center gap-4 text-sm">
           <Link
             to="/tools"
-            className="group inline-flex items-center gap-1.5 text-foreground transition-colors duration-150 hover:text-white"
+            className="group inline-flex items-center gap-1.5 text-foreground transition-colors duration-150 hover:text-red-500"
           >
             Browse all tools
             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
