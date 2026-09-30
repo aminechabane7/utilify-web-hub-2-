@@ -40,12 +40,12 @@ const About: React.FC = () => {
             <span className="mr-2 inline-block h-px w-6 translate-y-[-3px] bg-[#F2B84B]/60 align-middle" />
             About — Utilify Web Hub
           </p>
-          <h1 className="mt-5 text-[clamp(2.2rem,5.6vw,4.25rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-white">
+          <h1 className="mt-5 text-[clamp(2.2rem,5.6vw,4.25rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-foreground">
             Tools that respect
             <br />
-            <span className="text-white/55">your time and your data.</span>
+            <span className="text-foreground">your time and your data.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-[15px] leading-7 text-white/55">
+          <p className="mt-6 max-w-2xl text-[15px] leading-7 text-foreground">
             Utilify Web Hub is a growing collection of browser-based utilities for working with
             text, images, web code, calculations, unit conversions, and binary data. It's built to
             feel like a quiet workshop — not a marketing surface.
@@ -53,35 +53,28 @@ const About: React.FC = () => {
           <div className="mt-9 flex flex-wrap items-center gap-x-3 gap-y-3">
             <Link
               to="/tools"
-              className="group inline-flex items-center gap-2 border border-white bg-white px-5 py-3 text-sm font-medium text-[#0b0d12] transition-colors duration-150 hover:bg-[#F2B84B] hover:border-[#F2B84B]"
+              className="group inline-flex items-center gap-2 border border-foreground bg-white px-5 py-3 text-sm font-medium text-[#0b0d12] transition-colors duration-150 hover:bg-[#F2B84B] hover:border-[#F2B84B]"
             >
               Browse the tools
               <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              to="/store"
-              className="group inline-flex items-center gap-1.5 border-b border-white/30 pb-1 text-sm text-white/70 transition-colors duration-150 hover:border-white hover:text-white"
-            >
-              Visit the store
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
             </Link>
           </div>
         </div>
 
         <aside className="col-span-12 hidden border-l border-white/8 pl-8 pt-2 lg:col-span-4 lg:block">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">Colophon</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">Colophon</p>
           <dl className="mt-5 space-y-4 text-sm">
             <div>
-              <dt className="text-white/45">Type</dt>
-              <dd className="mt-1 text-white">Browser utility suite</dd>
+              <dt className="text-foreground">Type</dt>
+              <dd className="mt-1 text-foreground">Browser utility suite</dd>
             </div>
             <div>
-              <dt className="text-white/45">Stack</dt>
-              <dd className="mt-1 text-white">React · Vite · Tailwind</dd>
+              <dt className="text-foreground">Stack</dt>
+              <dd className="mt-1 text-foreground">React · Vite · Tailwind</dd>
             </div>
             <div>
-              <dt className="text-white/45">Released</dt>
-              <dd className="mt-1 font-mono tabular-nums text-white">v1.0</dd>
+              <dt className="text-foreground">Released</dt>
+              <dd className="mt-1 font-mono tabular-nums text-foreground">v1.0</dd>
             </div>
           </dl>
         </aside>
@@ -94,15 +87,15 @@ const About: React.FC = () => {
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#F2B84B]">
               § 01
             </span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">
               Principles
             </span>
           </div>
           <div className="col-span-12 md:col-span-7">
-            <h2 className="text-2xl font-semibold tracking-[-0.02em] text-white md:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-[-0.02em] text-foreground md:text-3xl">
               What we care about
             </h2>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-white/50">
+            <p className="mt-2 max-w-xl text-sm leading-6 text-foreground">
               The rules that shape what gets built, what stays, and what doesn't.
             </p>
           </div>
@@ -112,16 +105,16 @@ const About: React.FC = () => {
           {principles.map((item) => (
             <li
               key={item.n}
-              className="grid grid-cols-12 gap-x-6 gap-y-3 border-b border-white/8 pb-10 last:border-b-0 md:gap-x-8"
+              className="grid grid-cols-12 gap-x-6 gap-y-3 border-b border-foreground pb-10 last:border-b-0 md:gap-x-8"
             >
-              <span className="col-span-12 font-mono text-[11px] uppercase tracking-[0.22em] text-white/35 md:col-span-2">
+              <span className="col-span-12 font-mono text-[11px] uppercase tracking-[0.22em] text-foreground md:col-span-2">
                 {item.n}
               </span>
               <div className="col-span-12 md:col-span-7">
-                <h3 className="text-xl font-semibold tracking-[-0.02em] text-white">
+                <h3 className="text-xl font-semibold tracking-[-0.02em] text-foreground">
                   {item.title}
                 </h3>
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-white/55">
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-foreground">
                   {item.description}
                 </p>
               </div>
@@ -136,10 +129,10 @@ const About: React.FC = () => {
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#F2B84B]">
             § 02 — A short note
           </p>
-          <h2 className="mt-4 text-2xl font-semibold tracking-[-0.02em] text-white md:text-3xl">
+          <h2 className="mt-4 text-2xl font-semibold tracking-[-0.02em] text-foreground md:text-3xl">
             Built around useful, focused workflows
           </h2>
-          <div className="mt-6 max-w-2xl space-y-5 text-[15px] leading-7 text-white/55">
+          <div className="mt-6 max-w-2xl space-y-5 text-[15px] leading-7 text-foreground">
             <p>
               Whether you need to format JSON, resize an image, calculate a value, or convert a
               measurement, the goal is the same: make routine online tasks easier to complete and
@@ -154,15 +147,15 @@ const About: React.FC = () => {
         </div>
 
         <div className="col-span-12 lg:col-span-5">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">Commitments</p>
-          <dl className="mt-5 divide-y divide-white/8 border-y border-white/8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">Commitments</p>
+          <dl className="mt-5 divide-y divide-foreground border-y border-foreground">
             {commitments.map(([term, def]) => (
               <div
                 key={term}
                 className="grid grid-cols-12 items-baseline gap-3 py-4"
               >
-                <dt className="col-span-4 text-sm font-medium text-white">{term}</dt>
-                <dd className="col-span-8 text-sm text-white/55">{def}</dd>
+                <dt className="col-span-4 text-sm font-medium text-foreground">{term}</dt>
+                <dd className="col-span-8 text-sm text-foreground">{def}</dd>
               </div>
             ))}
           </dl>
@@ -170,21 +163,14 @@ const About: React.FC = () => {
       </section>
 
       {/* Footer nav */}
-      <section className="flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-white/45">Ready to use the tools?</p>
+      <section className="flex flex-col gap-4 border-t border-foreground pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-foreground">Ready to use the tools?</p>
         <div className="flex flex-wrap items-center gap-4 text-sm">
           <Link
             to="/tools"
-            className="group inline-flex items-center gap-1.5 text-white/65 transition-colors duration-150 hover:text-white"
+            className="group inline-flex items-center gap-1.5 text-foreground transition-colors duration-150 hover:text-white"
           >
             Browse all tools
-            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
-          </Link>
-          <Link
-            to="/store"
-            className="group inline-flex items-center gap-1.5 text-white/65 transition-colors duration-150 hover:text-white"
-          >
-            Visit the store
             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
           </Link>
         </div>

@@ -91,12 +91,12 @@ const Index: React.FC = () => {
             <span className="mr-2 inline-block h-px w-6 translate-y-[-3px] bg-[#F2B84B]/60 align-middle" />
             Utilify / Web Hub — v1.0
           </p>
-          <h1 className="mt-6 text-[clamp(2.4rem,6.2vw,4.75rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-white">
+          <h1 className="mt-6 text-[clamp(2.4rem,6.2vw,4.75rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-foreground">
             Small tools.
             <br />
-            <span className="text-white/55">Big time savings.</span>
+            <span className="text-foreground">Big time savings.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-[15px] leading-7 text-white/55">
+          <p className="mt-6 max-w-xl text-[15px] leading-7 text-foreground">
             A quiet, fast workshop of browser utilities for text, images, calculators, and code. No
             accounts, no uploads to third parties — open a tool, do the job, move on.
           </p>
@@ -109,7 +109,7 @@ const Index: React.FC = () => {
               Explore tools
               <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" />
             </Link>
-            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/40">
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/40">
               {implementedTools} tools · {toolCategories.length} categories
             </span>
           </div>
@@ -117,20 +117,20 @@ const Index: React.FC = () => {
 
         {/* Right rail: tiny editorial index */}
         <aside className="col-span-12 hidden border-l border-white/8 pl-8 pt-2 lg:col-span-4 lg:block">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">Index</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">Index</p>
           <ol className="mt-5 space-y-2 text-sm">
             {toolCategories.slice(0, 8).map((category, i) => (
-              <li key={category.id} className="flex items-baseline gap-3 text-white/60">
-                <span className="font-mono text-[11px] tabular-nums text-white/30">
+              <li key={category.id} className="flex items-baseline gap-3 text-foreground">
+                <span className="font-mono text-[11px] tabular-nums text-foreground">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <Link
                   to={`/tools/${category.id}`}
-                  className="transition-colors duration-150 hover:text-white"
+                  className="transition-colors duration-150 hover:text-foreground"
                 >
                   {category.title}
                 </Link>
-                <span className="ml-auto font-mono text-[11px] tabular-nums text-white/30">
+                <span className="ml-auto font-mono text-[11px] tabular-nums text-foreground">
                   {category.tools.length}
                 </span>
               </li>
@@ -143,11 +143,11 @@ const Index: React.FC = () => {
       <section className="border-b border-white/8 py-14 md:py-20">
         <div className="grid grid-cols-12 gap-x-6 gap-y-8 md:gap-x-8">
           <div className="col-span-12 lg:col-span-4">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/40">§ 01 — Search</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.02em] text-white">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">§ 01 — Search</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.02em] text-foreground">
               What are you trying to do?
             </h2>
-            <p className="mt-3 text-sm leading-6 text-white/50">
+            <p className="mt-3 text-sm leading-6 text-foreground">
               Type a tool name, a category, or anything you remember. Results update as you type.
             </p>
           </div>
@@ -158,14 +158,14 @@ const Index: React.FC = () => {
                 Search tools
               </label>
               <div className="flex items-center gap-3 border-b border-white/20 pb-3 transition-colors duration-150 focus-within:border-[#F2B84B]">
-                <Search className="h-5 w-5 text-white/40" aria-hidden />
+                <Search className="h-5 w-5 text-foreground" aria-hidden />
                 <input
                   id="tool-search"
                   ref={inputRef}
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search tools, e.g. word counter, base64, image resize…"
-                  className="flex-1 bg-transparent text-lg text-white placeholder:text-white/30 focus:outline-none"
+                  className="flex-1 bg-transparent text-lg text-foreground placeholder:text-foreground focus:outline-none"
                   autoComplete="off"
                   spellCheck={false}
                 />
@@ -177,12 +177,12 @@ const Index: React.FC = () => {
                       inputRef.current?.focus();
                     }}
                     aria-label="Clear search"
-                    className="text-white/40 transition-colors hover:text-white"
+                    className="text-foreground transition-colors hover:text-foreground"
                   >
                     <X className="h-4 w-4" />
                   </button>
                 ) : (
-                  <kbd className="hidden border border-white/15 px-1.5 py-0.5 font-mono text-[10px] text-white/40 sm:inline-block">
+                  <kbd className="hidden border border-white/15 px-1.5 py-0.5 font-mono text-[10px] text-foreground sm:inline-block">
                     /
                   </kbd>
                 )}
@@ -199,20 +199,20 @@ const Index: React.FC = () => {
                             to={tool.path}
                             className="group flex items-baseline gap-4 py-3 transition-colors duration-150 hover:bg-white/[0.02]"
                           >
-                            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/35">
+                            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-foreground">
                               {tool.category.title.replace(/ Tools$/, '')}
                             </span>
-                            <span className="text-sm font-medium text-white">{tool.title}</span>
-                            <span className="hidden text-xs text-white/40 sm:inline">— {tool.description}</span>
-                            <ArrowUpRight className="ml-auto h-4 w-4 text-white/30 transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#F2B84B]" />
+                            <span className="text-sm font-medium text-foreground">{tool.title}</span>
+                            <span className="hidden text-xs text-foreground sm:inline">— {tool.description}</span>
+                            <ArrowUpRight className="ml-auto h-4 w-4 text-foreground transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#F2B84B]" />
                           </Link>
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="mt-4 text-sm text-white/45">
+                    <p className="mt-4 text-sm text-foreground/45">
                       No tools match “{query}”. Try a different word, or{' '}
-                      <Link to="/tools" className="underline decoration-white/30 underline-offset-4 hover:text-white">
+                      <Link to="/tools" className="underline decoration-white/30 underline-offset-4 hover:text-foreground">
                         browse the directory
                       </Link>
                       .
@@ -229,7 +229,7 @@ const Index: React.FC = () => {
                         setQuery(suggestion);
                         inputRef.current?.focus();
                       }}
-                      className="border border-white/10 px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-white/55 transition-colors duration-150 hover:border-white/30 hover:text-white"
+                      className="border border-white/10 px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-foreground transition-colors duration-150 hover:border-white/30 hover:text-foreground"
                     >
                       {suggestion}
                     </button>
@@ -242,7 +242,7 @@ const Index: React.FC = () => {
       </section>
 
       {/* ────────────────────────────── By the numbers ────────────────────────────── */}
-      <section className="grid grid-cols-2 gap-x-6 gap-y-6 border-b border-white/8 py-12 md:grid-cols-4 md:gap-x-8">
+      <section className="grid grid-cols-2 gap-x-6 gap-y-6 border-b border-white/8 py-12 md:grid-cols-4 md:gap-x-8 text-foreground">
         <Stat label="Categories" value={toolCategories.length} />
         <Stat label="Total tools" value={totalTools} />
         <Stat label="Live in browser" value={implementedTools} />
@@ -259,10 +259,10 @@ const Index: React.FC = () => {
 
 const Stat: React.FC<{ label: string; value: number | string; mono?: boolean }> = ({ label, value, mono }) => (
   <div>
-    <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">{label}</p>
+    <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">{label}</p>
     <p
       className={
-        'mt-3 text-3xl font-semibold tracking-[-0.02em] text-white md:text-4xl ' +
+        'mt-3 text-3xl font-semibold tracking-[-0.02em] text-foreground md:text-4xl ' +
         (mono ? 'font-mono text-2xl md:text-3xl' : '')
       }
     >
@@ -279,7 +279,7 @@ const CategorySections: React.FC = () => {
   const remaining = toolCategories.filter((c) => !(featured as readonly string[]).includes(c.id));
 
   return (
-    <div className="space-y-20 py-20 md:space-y-28 md:py-28">
+    <div className="space-y-20 py-20 md:space-y-28 md:py-28 text-foreground">
       {/* Row 1: Text tools — editorial list, dense */}
       <TextSection category={toolCategories.find((c) => c.id === 'text')!} />
 
@@ -311,17 +311,17 @@ const SectionHeader: React.FC<{
   <header className="grid grid-cols-12 gap-x-6 gap-y-3 border-b border-white/10 pb-6 md:gap-x-8">
     <div className="col-span-12 flex items-baseline gap-3 md:col-span-2">
       <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#F2B84B]">§ {index}</span>
-      <span className="font-mono text-[11px] tabular-nums text-white/30">{String(count).padStart(2, '0')}</span>
+      <span className="font-mono text-[11px] tabular-nums text-foreground">{String(count).padStart(2, '0')}</span>
     </div>
     <div className="col-span-12 md:col-span-7">
-      <h3 className="text-2xl font-semibold tracking-[-0.02em] text-white md:text-3xl">{title}</h3>
-      <p className="mt-2 max-w-xl text-sm leading-6 text-white/50">{description}</p>
+      <h3 className="text-2xl font-semibold tracking-[-0.02em] text-foreground md:text-3xl">{title}</h3>
+      <p className="mt-2 max-w-xl text-sm leading-6 text-foreground">{description}</p>
     </div>
     <div className="col-span-12 flex items-end justify-start md:col-span-3 md:justify-end">
       {href && categoryIndexPages.has(categoryId ?? '') ? (
         <Link
           to={href}
-          className="group inline-flex items-center gap-1.5 text-sm font-medium text-white transition-colors duration-150 hover:text-[#F2B84B]"
+          className="group inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors duration-150 hover:text-[#F2B84B]"
         >
           All {title.toLowerCase().replace(/s$/, '')} tools
           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
@@ -354,12 +354,12 @@ const TextSection: React.FC<{ category: ToolCategoryGroup }> = ({ category }) =>
             to={hero.path}
             className="group col-span-12 flex flex-col border border-white/10 p-6 transition-colors duration-150 hover:border-white/30 md:col-span-5 md:p-8"
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">Featured</p>
-            <h4 className="mt-6 text-2xl font-semibold tracking-[-0.02em] text-white md:text-[28px]">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">Featured</p>
+            <h4 className="mt-6 text-2xl font-semibold tracking-[-0.02em] text-foreground md:text-[28px]">
               {hero.title}
             </h4>
-            <p className="mt-3 text-sm leading-6 text-white/55">{hero.description}</p>
-            <div className="mt-auto flex items-center gap-2 pt-8 text-sm text-white transition-colors group-hover:text-[#F2B84B]">
+            <p className="mt-3 text-sm leading-6 text-foreground">{hero.description}</p>
+            <div className="mt-auto flex items-center gap-2 pt-8 text-sm text-foreground transition-colors group-hover:text-[#F2B84B]">
               Open tool
               <ArrowUpRight className="h-4 w-4 transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </div>
@@ -371,11 +371,11 @@ const TextSection: React.FC<{ category: ToolCategoryGroup }> = ({ category }) =>
             <li key={tool.id} className="border-b border-white/8 last:border-b-0 md:border-b md:odd:border-r md:odd:pr-6 md:even:pl-6">
               <Link
                 to={tool.path}
-                className="group flex items-baseline gap-3 py-3 text-sm text-white/70 transition-colors duration-150 hover:text-white"
+                className="group flex items-baseline gap-3 py-3 text-sm text-foreground/70 transition-colors duration-150 hover:text-foreground"
               >
-                <span className="font-mono text-[11px] text-white/30 group-hover:text-[#F2B84B]">→</span>
+                <span className="font-mono text-[11px] text-foreground/30 group-hover:text-[#F2B84B]">→</span>
                 <span className="flex-1 truncate">{tool.title}</span>
-                <ArrowUpRight className="h-3.5 w-3.5 -translate-y-0.5 translate-x-0.5 text-white/0 transition-all duration-150 group-hover:text-[#F2B84B]" />
+                <ArrowUpRight className="h-3.5 w-3.5 -translate-y-0.5 translate-x-0.5 text-foreground/0 transition-all duration-150 group-hover:text-[#F2B84B]" />
               </Link>
             </li>
           ))}
@@ -409,13 +409,13 @@ const CalculatorSection: React.FC<{ category: ToolCategoryGroup }> = ({ category
             to={first.path}
             className="group col-span-12 flex flex-col gap-4 bg-white/[0.02] p-6 transition-colors duration-150 hover:bg-white/[0.04] md:col-span-7 md:p-8"
           >
-            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">
               <CalculatorGlyph />
               Calculator
             </div>
-            <h4 className="text-2xl font-semibold tracking-[-0.02em] text-white md:text-3xl">{first.title}</h4>
-            <p className="max-w-md text-sm leading-6 text-white/55">{first.description}</p>
-            <span className="mt-2 inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors group-hover:text-[#F2B84B]">
+            <h4 className="text-2xl font-semibold tracking-[-0.02em] text-foreground md:text-3xl">{first.title}</h4>
+            <p className="max-w-md text-sm leading-6 text-foreground/55">{first.description}</p>
+            <span className="mt-2 inline-flex items-center gap-1.5 text-sm text-foreground/60 transition-colors group-hover:text-[#F2B84B]">
               Open <ArrowUpRight className="h-3.5 w-3.5" />
             </span>
           </Link>
@@ -426,12 +426,12 @@ const CalculatorSection: React.FC<{ category: ToolCategoryGroup }> = ({ category
             to={second.path}
             className="group col-span-12 flex flex-col gap-3 border border-white/10 p-6 transition-colors duration-150 hover:border-white/30 md:col-span-5 md:p-8"
           >
-            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-foreground">
               <Hash className="h-3.5 w-3.5" />
               Calculator
             </div>
-            <h4 className="text-xl font-semibold tracking-[-0.02em] text-white md:text-2xl">{second.title}</h4>
-            <p className="text-sm leading-6 text-white/55">{second.description}</p>
+            <h4 className="text-xl font-semibold tracking-[-0.02em] text-foreground md:text-2xl">{second.title}</h4>
+            <p className="text-sm leading-6 text-foreground">{second.description}</p>
             <span className="mt-auto inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors group-hover:text-[#F2B84B]">
               Open <ArrowUpRight className="h-3.5 w-3.5" />
             </span>
@@ -442,10 +442,10 @@ const CalculatorSection: React.FC<{ category: ToolCategoryGroup }> = ({ category
           <Link
             key={tool.id}
             to={tool.path}
-            className="group col-span-6 flex items-baseline justify-between gap-3 border-t border-white/8 py-4 text-sm text-white/70 transition-colors duration-150 hover:text-white md:col-span-3"
+            className="group col-span-6 flex items-baseline justify-between gap-3 border-t border-white/8 py-4 text-sm text-text-sm font-medium text-foreground transition-colors duration-150 hover:text-foreground md:col-span-3"
           >
             <span className="truncate">{tool.title}</span>
-            <ArrowUpRight className="h-3.5 w-3.5 -translate-y-0.5 translate-x-0.5 text-white/0 transition-all duration-150 group-hover:text-[#F2B84B]" />
+            <ArrowUpRight className="h-3.5 w-3.5 -translate-y-0.5 translate-x-0.5 text-foreground transition-all duration-150 group-hover:text-[#F2B84B]" />
           </Link>
         ))}
       </div>
@@ -471,9 +471,9 @@ const ImageSection: React.FC<{ category: ToolCategoryGroup }> = ({ category }) =
           <li key={tool.id} className="mb-3 break-inside-avoid">
             <Link
               to={tool.path}
-              className="group flex items-baseline gap-2 text-sm text-white/70 transition-colors duration-150 hover:text-white"
+              className="group flex items-baseline gap-2 text-sm text-foreground transition-colors duration-150 hover:text-foreground"
             >
-              <span className="font-mono text-[11px] text-white/30 group-hover:text-[#F2B84B]">↳</span>
+              <span className="font-mono text-[11px] text-foreground group-hover:text-[#F2B84B]">↳</span>
               <span className="truncate">{tool.title}</span>
             </Link>
           </li>
@@ -505,7 +505,7 @@ const ConverterSection: React.FC<{ category: ToolCategoryGroup }> = ({ category 
           >
             <div>
               <p className="text-sm font-medium text-white">{tool.title}</p>
-              <p className="mt-0.5 text-xs text-white/45">{tool.description}</p>
+              <p className="mt-0.5 text-xs text-white/50">{tool.description}</p>
             </div>
             <ArrowUpRight className="h-4 w-4 text-white/35 transition-all duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#F2B84B]" />
           </Link>
@@ -532,25 +532,25 @@ const RemainingSection: React.FC<{ categories: ToolCategoryGroup[] }> = ({ categ
           return (
             <li key={category.id}>
               <div className="grid grid-cols-12 items-baseline gap-x-4 gap-y-1 py-5 transition-colors duration-150 hover:bg-white/[0.015]">
-                <span className="col-span-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">
+                <span className="col-span-2 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/35">
                   {category.title.replace(/ Tools$/, '')}
                 </span>
-                <p className="col-span-12 text-sm text-white/65 md:col-span-6">{category.description}</p>
-                <span className="col-span-6 font-mono text-[11px] tabular-nums text-white/40 md:col-span-2 md:text-right">
+                <p className="col-span-12 text-sm text-foreground/65 md:col-span-6">{category.description}</p>
+                <span className="col-span-6 font-mono text-[11px] tabular-nums text-foreground/40 md:col-span-2 md:text-right">
                   {category.tools.length} tools
                 </span>
                 <div className="col-span-6 flex items-center justify-end gap-4 text-sm md:col-span-2">
                   {hasIndex && (
                     <Link
                       to={`/tools/${category.id}`}
-                      className="text-white/55 transition-colors duration-150 hover:text-white"
+                      className="text-foreground/55 transition-colors duration-150 hover:text-foreground"
                     >
                       Open
                     </Link>
                   )}
                   <Link
                     to={`/tools/${category.id}`}
-                    className="group inline-flex items-center gap-1 text-white/70 transition-colors duration-150 hover:text-[#F2B84B]"
+                    className="group inline-flex items-center gap-1 text-foreground/70 transition-colors duration-150 hover:text-[#F2B84B]"
                   >
                     Explore
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" />
@@ -573,7 +573,7 @@ const CalculatorGlyph: React.FC = () => (
     viewBox="0 0 14 14"
     fill="none"
     aria-hidden
-    className="text-white/45"
+    className="text-foreground/45"
   >
     <rect x="2" y="1.5" width="10" height="11" stroke="currentColor" strokeWidth="1" />
     <rect x="3.5" y="3" width="7" height="2" fill="currentColor" />
