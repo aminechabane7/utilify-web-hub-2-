@@ -3,8 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, Sun, Moon, Laptop } from "lucide-react";
 import { useTheme } from "next-themes";
 import Seo from "@/components/Seo";
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -59,9 +57,11 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
             aria-label="Utilify Web Hub — home"
           >
             <img
-              src="/utilify-logo.png"
+              src="/utilify-logo.webp"
               alt=""
               aria-hidden="true"
+              width="28"
+              height="32"
               className="h-8 w-7 object-contain transition-transform duration-150 group-hover:scale-105"
             />
             <span className="hidden sm:inline">Utilify</span>
@@ -111,8 +111,6 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
       {/* ── Main content ─────────────────────────────────────────────────── */}
       <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-24 pt-8 sm:px-6 lg:px-8">
         {children}
-        <Analytics />
-        <SpeedInsights />
       </main>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
@@ -121,7 +119,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
           {/* Brand column */}
           <div className="max-w-xs">
             <div className="flex items-center gap-2.5">
-              <img src="/utilify-logo.png" alt="" aria-hidden="true" className="h-7 w-6 object-contain" />
+              <img src="/utilify-logo.webp" alt="" aria-hidden="true" width="24" height="28" className="h-7 w-6 object-contain" />
               <span className="text-sm font-semibold text-foreground">Utilify Web Hub</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">

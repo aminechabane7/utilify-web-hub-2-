@@ -23,10 +23,6 @@ export const PAGE_META: Record<string, PageMeta> = {
     description:
       "Learn about Utilify Web Hub — a fast, privacy-friendly collection of free browser tools for everyday digital tasks.",
   },
-  "/store": {
-    title: "Store – Digital Products for Better Workflows",
-    description: "Practical templates and systems for creators, builders, and modern digital work.",
-  },
   "/tools": {
     title: "Free Online Tools for Text, Images, Code & More",
     description:
@@ -67,11 +63,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: "Text Repeater – Repeat Text Multiple Times",
     description: "Repeat a string a specified number of times instantly.",
   },
-  "/tools/text/sorter": {
+  "/tools/text/text-sorter": {
     title: "Text Sorter – Alphabetical or Numeric Sort",
     description: "Sort lines of text alphabetically or numerically.",
   },
-  "/tools/misc/comma-separator": {
+  "/tools/text/comma-separator": {
     title: "Comma Separator – Add Commas to List Items",
     description: "Separate text items into a comma‑separated list.",
   },

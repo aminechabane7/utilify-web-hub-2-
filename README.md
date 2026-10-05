@@ -7,7 +7,11 @@ yarn install
 yarn dev
 ```
 
-The public store is available at `/store`. Copy `.env.example` to `.env` to configure your environment. Restart the Vite server after changing `.env`.
+The production build generates `public/sitemap.xml` from the implemented tool routes. The
+deployed site references it from `robots.txt`; after deployment, submit
+`https://utilify-web-hub-2.vercel.app/sitemap.xml` in Google Search Console.
+
+Copy `.env.example` to `.env` to configure your environment. Restart the Vite server after changing `.env`.
 
 Product buttons use the sample mail links in `src/lib/content.ts`. Replace those URLs with your payment provider checkout links when ready.# Welcome to your Lovable project
 

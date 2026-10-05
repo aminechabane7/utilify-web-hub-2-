@@ -1,0 +1,1 @@
+The standard AI-readable site guide is available at /llms.txt.

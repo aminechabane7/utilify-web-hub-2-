@@ -4,6 +4,8 @@ import { PAGE_META } from "@/lib/pageMeta";
 import { getCategoryMeta } from "@/lib/categoryMeta";
 
 const SITE_NAME = "Utilify Web Hub";
+const SITE_URL = "https://utilify-web-hub-2.vercel.app";
+const OG_IMAGE = `${SITE_URL}/og-image.png`;
 const DEFAULT_TITLE = "Utilify Web Hub – Free Online Tools";
 const DEFAULT_DESCRIPTION =
   "Free browser-based utilities for text, images, code, calculators, and conversions. No login, no installs, no tracking.";
@@ -22,6 +24,18 @@ const setMetaContent = (selector: string, attribute: "name" | "property", key: s
     document.head.appendChild(element);
   }
   element.content = content;
+};
+
+const canonicalPath = (pathname: string) => {
+  const segments = pathname.split("/").filter(Boolean);
+  const cleanSegments = segments.map((segment) =>
+    segment
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase(),
+  );
+  return cleanSegments.length ? `/${cleanSegments.join("/")}` : "/";
 };
 
 const getMetadata = (pathname: string, title?: string, description?: string) => {
@@ -83,7 +97,7 @@ const Seo = ({ title, description }: SeoProps) => {
 
     // Canonical URL to avoid duplicate content issues
     const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    const canonicalUrl = window.location.href;
+    const canonicalUrl = `${SITE_URL}${canonicalPath(pathname)}`;
     if (canonical) {
       canonical.href = canonicalUrl;
     } else {
@@ -92,6 +106,55 @@ const Seo = ({ title, description }: SeoProps) => {
       link.href = canonicalUrl;
       document.head.appendChild(link);
     }
+    setMetaContent('meta[property="og:url"]', "property", "og:url", canonicalUrl);
+    setMetaContent('meta[property="og:image"]', "property", "og:image", OG_IMAGE);
+    setMetaContent('meta[property="og:image:type"]', "property", "og:image:type", "image/png");
+    setMetaContent('meta[property="og:image:width"]', "property", "og:image:width", "1200");
+    setMetaContent('meta[property="og:image:height"]', "property", "og:image:height", "630");
+    setMetaContent('meta[name="twitter:image"]', "name", "twitter:image", OG_IMAGE);
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": `${SITE_URL}/#website`,
+          url: `${SITE_URL}/`,
+          name: SITE_NAME,
+          description: DEFAULT_DESCRIPTION,
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${canonicalUrl}#webpage`,
+          url: canonicalUrl,
+          name: resolvedTitle,
+          description: resolvedDescription,
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+        },
+        ...(canonicalPath(pathname).startsWith("/tools/") &&
+        canonicalPath(pathname).split("/").filter(Boolean).length > 2
+          ? [
+              {
+                "@type": "SoftwareApplication",
+                name: resolvedTitle.split(/[–|]/)[0].trim(),
+                description: resolvedDescription,
+                url: canonicalUrl,
+                applicationCategory: "UtilitiesApplication",
+                operatingSystem: "Any",
+                offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+              },
+            ]
+          : []),
+      ],
+    };
+    let schemaElement = document.head.querySelector<HTMLScriptElement>('script[type="application/ld+json"]#site-schema');
+    if (!schemaElement) {
+      schemaElement = document.createElement("script");
+      schemaElement.type = "application/ld+json";
+      schemaElement.id = "site-schema";
+      document.head.appendChild(schemaElement);
+    }
+    schemaElement.textContent = JSON.stringify(schema);
   }, [pathname, title, description]);
 
   return null;

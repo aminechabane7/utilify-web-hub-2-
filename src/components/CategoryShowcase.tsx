@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, ArrowUpRight, type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getCategoryMeta } from "@/lib/categoryMeta";
+import { normalizeToolPath } from "@/lib/toolPaths";
 import type { ToolItem } from "@/lib/types";
 
 type CategoryShowcaseProps = {
@@ -95,7 +96,7 @@ const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
         <div className="mt-8 grid grid-cols-12 gap-x-6 gap-y-6 md:gap-x-8">
           {hero && (
             <Link
-              to={hero.path}
+              to={normalizeToolPath(hero.path)}
               className="group col-span-12 flex flex-col border border-white/10 p-6 transition-colors duration-150 hover:border-white/30 md:col-span-7 md:p-8"
             >
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/35">01 — Headline tool</p>
@@ -114,7 +115,7 @@ const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
             {rest.slice(0, 4).map((tool, idx) => (
               <li key={tool.id}>
                 <Link
-                  to={tool.path}
+                  to={normalizeToolPath(tool.path)}
                   className="group flex items-baseline gap-3 py-3 text-sm text-white/70 transition-colors duration-150 hover:text-white"
                 >
                   <span className="font-mono text-[11px] tabular-nums text-white/30 group-hover:text-[#F2B84B]">
@@ -146,7 +147,7 @@ const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
             {tools.map((tool, idx) => (
               <li key={tool.id}>
                 <Link
-                  to={tool.path}
+                  to={normalizeToolPath(tool.path)}
                   className="group grid grid-cols-12 items-baseline gap-3 py-4 transition-colors duration-150 hover:bg-white/[0.015]"
                 >
                   <span className="col-span-2 font-mono text-[11px] tabular-nums text-white/30 group-hover:text-[#F2B84B]">
@@ -164,7 +165,7 @@ const CategoryShowcase: React.FC<CategoryShowcaseProps> = ({
             {rest.map((tool) => (
               <Link
                 key={tool.id}
-                to={tool.path}
+                to={normalizeToolPath(tool.path)}
                 className="group mb-3 flex items-baseline gap-2 break-inside-avoid text-sm text-white/70 transition-colors duration-150 hover:text-white"
               >
                 <span className="font-mono text-[11px] text-white/30 group-hover:text-[#F2B84B]">↳</span>

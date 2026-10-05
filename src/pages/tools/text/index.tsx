@@ -90,7 +90,7 @@ const textTools: ToolItem[] = [
     id: 'text-sorter',
     title: 'Text Sorter',
     description: 'Sort lines of text alphabetically or numerically',
-    path: '/tools/text/sorter',
+    path: '/tools/text/text-sorter',
     icon: SortAsc,
   },
   {

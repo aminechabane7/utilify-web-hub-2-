@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Search, X } from "lucide-react";
-import { toolCategories, type ToolCategoryGroup } from "./tools";
+import { toolCategories, type ToolCategoryGroup } from "@/pages/tools";
 
 const totalTools = toolCategories.reduce((sum, c) => sum + c.tools.length, 0);
 const implementedTools = toolCategories.reduce(

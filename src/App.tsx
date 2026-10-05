@@ -11,6 +11,7 @@ import About from "@/pages/About";
 import NotFound from "@/pages/NotFound";
 import ToolDirectory from "@/pages/tools/index";
 import { toolCategories } from "@/pages/tools";
+import { toToolSlug } from "@/lib/toolPaths";
 import BinaryToolsIndex from "@/pages/tools/binary";
 import CalculatorsIndex from "@/pages/tools/calculators";
 import ConvertersIndex from "@/pages/tools/converters";
@@ -30,14 +31,6 @@ const queryClient = new QueryClient({
 type ToolRoute = { path: string; Component: LazyExoticComponent<ComponentType> };
 type ToolModule = { default: ComponentType };
 
-const toSlug = (value: string) =>
-  value
-    .replace(/\.tsx$/, "")
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .replace(/[^a-zA-Z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
-    .toLowerCase();
-
 const normalizeSegment = (value: string) => value.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
 
 // Tool modules are lazy so opening one utility does not download every tool in the directory.
@@ -53,7 +46,7 @@ const moduleRoutes = Object.entries(toolModules)
     const filename = segments.pop();
     if (!filename || segments.length === 0) return null;
 
-    return { path: `/tools/${segments.join("/")}/${toSlug(filename)}`, Component: lazy(loader) };
+    return { path: `/tools/${segments.join("/")}/${toToolSlug(filename)}`, Component: lazy(loader) };
   })
   .filter((route): route is ToolRoute => route !== null)
   .sort((left, right) => left.path.localeCompare(right.path));

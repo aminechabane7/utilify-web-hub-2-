@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Utilify Web Hub</title>
+  <desc id="description">Free browser-based tools for everyday digital tasks.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#080b11"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f2b84b"/>
+      <stop offset="1" stop-color="#f6d27d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <circle cx="1030" cy="90" r="300" fill="#f2b84b" opacity=".07"/>
+  <path d="M76 112h58" stroke="url(#accent)" stroke-width="5"/>
+  <text x="76" y="160" fill="#f2b84b" font-family="Arial, sans-serif" font-size="22" letter-spacing="5">UTILIFY / WEB HUB</text>
+  <text x="76" y="310" fill="#f8fafc" font-family="Arial, sans-serif" font-size="88" font-weight="700" letter-spacing="-3">Small tools.</text>
+  <text x="76" y="410" fill="#f8fafc" font-family="Arial, sans-serif" font-size="88" font-weight="700" letter-spacing="-3">Big time savings.</text>
+  <text x="80" y="495" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="27">Free browser-based utilities for everyday digital work.</text>
+  <rect x="76" y="550" width="1048" height="1" fill="#ffffff" opacity=".18"/>
+</svg>

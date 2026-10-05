@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Binary } from "lucide-react";
+import { normalizeToolPath } from "@/lib/toolPaths";
 
 interface BinaryTool {
   id: string;
@@ -117,7 +118,7 @@ const BinaryToolsIndex: React.FC = () => {
                 {group.tools.map((tool) => (
                   <li key={tool.id} className="mb-3 break-inside-avoid">
                     <Link
-                      to={tool.path}
+                      to={normalizeToolPath(tool.path)}
                       className="group flex items-baseline gap-2 text-sm text-white/70 transition-colors duration-150 hover:text-white"
                     >
                       <span className="font-mono text-[11px] text-white/30 group-hover:text-[#F2B84B]">
@@ -148,7 +149,7 @@ const BinaryToolsIndex: React.FC = () => {
           {binaryTools.map((tool, idx) => (
             <li key={tool.id}>
               <Link
-                to={tool.path}
+                to={normalizeToolPath(tool.path)}
                 className="group grid grid-cols-12 items-baseline gap-3 py-3 transition-colors duration-150 hover:bg-white/[0.015]"
               >
                 <span className="col-span-2 font-mono text-[11px] tabular-nums text-white/30 group-hover:text-[#F2B84B] md:col-span-1">

@@ -47,9 +47,13 @@ const ToolLayout: React.FC<ToolLayoutProps> = ({
         </div>
       )}
 
-      <div className="rounded-[1.5rem] border border-white/10 bg-card/80 shadow-[0_12px_40px_rgba(0,0,0,0.18)]">
+      <section
+        aria-label={`${title} workspace`}
+        className="rounded-[1.5rem] border border-white/10 bg-card/80 shadow-[0_12px_40px_rgba(0,0,0,0.18)]"
+      >
+        <h2 className="sr-only">{title} controls</h2>
         {children}
-      </div>
+      </section>
     </div>
   );
 };

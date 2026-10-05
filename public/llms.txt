@@ -1,0 +1,25 @@
+# Utilify Web Hub
+
+> Free browser-based utilities for text, images, code, calculators, conversions, and more.
+
+Utilify Web Hub provides small online tools designed to run in the browser without an account.
+Use the site navigation and tool directory to find the available utilities.
+
+## Main pages
+
+- [Home](https://utilify-web-hub-2.vercel.app/): Search and browse the available tools.
+- [All tools](https://utilify-web-hub-2.vercel.app/tools): Browse the tool directory.
+- [About](https://utilify-web-hub-2.vercel.app/about): Learn about the site and its approach.
+
+## Tool categories
+
+- [Text tools](https://utilify-web-hub-2.vercel.app/tools/text)
+- [Image tools](https://utilify-web-hub-2.vercel.app/tools/image)
+- [Calculators](https://utilify-web-hub-2.vercel.app/tools/calculators)
+- [Converters](https://utilify-web-hub-2.vercel.app/tools/converters)
+- [Binary tools](https://utilify-web-hub-2.vercel.app/tools/binary)
+- [Website tools](https://utilify-web-hub-2.vercel.app/tools/website)
+- [Developer tools](https://utilify-web-hub-2.vercel.app/tools/dev)
+- [Miscellaneous tools](https://utilify-web-hub-2.vercel.app/tools/misc)
+
+The XML sitemap at https://utilify-web-hub-2.vercel.app/sitemap.xml lists canonical public pages.

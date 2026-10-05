@@ -9,6 +9,7 @@ import {
   Code,
   Package,
 } from 'lucide-react';
+import { normalizeToolPath } from '@/lib/toolPaths';
 
 export interface DirectoryToolItem {
   id: string;
@@ -28,7 +29,7 @@ export interface ToolCategoryGroup {
   tools: DirectoryToolItem[];
 }
 
-export const toolCategories: ToolCategoryGroup[] = [
+const definedToolCategories: ToolCategoryGroup[] = [
   {
     id: 'text',
     title: 'Text Tools',
@@ -46,7 +47,7 @@ export const toolCategories: ToolCategoryGroup[] = [
       { id: 'terms-and-condition-generator', title: 'Terms and Condition Generator', description: 'Generate website terms and conditions text', path: '/tools/text/terms-and-condition-generator', implemented: true },
       { id: 'disclaimer-generator', title: 'Disclaimer Generator', description: 'Generate disclaimers for your website or app', path: '/tools/text/disclaimer-generator', implemented: true },
       { id: 'text-repeater', title: 'Text Repeater', description: 'Repeat text a specified number of times', path: '/tools/text/text-repeater', implemented: true },
-      { id: 'text-sorter', title: 'Text Sorter', description: 'Sort lines of text alphabetically or numerically', path: '/tools/text/sorter', implemented: true },
+      { id: 'text-sorter', title: 'Text Sorter', description: 'Sort lines of text alphabetically or numerically', path: '/tools/text/text-sorter', implemented: true },
       { id: 'comma-separator', title: 'Comma Separator', description: 'Separate text with commas', path: '/tools/text/comma-separator', implemented: true },
     ],
   },
@@ -186,19 +187,6 @@ export const toolCategories: ToolCategoryGroup[] = [
     ],
   },
   {
-    id: 'code',
-    title: 'Code Tools',
-    description: 'Format, validate and convert code and data',
-    icon: Code,
-    color: 'codeTool',
-    gradient: 'codeTool-gradient',
-    tools: [
-      { id: 'json-formatter', title: 'JSON Formatter', description: 'Format, validate and beautify JSON data', path: '/tools/dev/json-formatter', implemented: true },
-      { id: 'base64-converter', title: 'Base64 Encode/Decode', description: 'Encode and decode text to and from Base64', path: '/tools/code/base64-converter', implemented: true },
-      { id: 'jwt-decoder', title: 'JWT Decoder', description: 'Decode and inspect JWT tokens', path: '/tools/code/jwt-decoder', implemented: true },
-    ],
-  },
-  {
     id: 'misc',
     title: 'Miscellaneous',
     description: 'Other useful tools and utilities',
@@ -213,3 +201,11 @@ export const toolCategories: ToolCategoryGroup[] = [
     ],
   },
 ];
+
+export const toolCategories = definedToolCategories.map((category) => ({
+  ...category,
+  tools: category.tools.map((tool) => ({
+    ...tool,
+    path: normalizeToolPath(tool.path),
+  })),
+}));
